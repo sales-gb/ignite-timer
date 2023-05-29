@@ -14,17 +14,17 @@ import {
 } from './styles'
 
 const newCycleFormValidationSchema = zod.object({
-  task: zod.string().min(1, 'Informe uma tarefa'),
+  task: zod.string().min(1, 'Informe a tarefa'),
   minutesAmount: zod
     .number()
-    .min(5, 'O intervalo precisa ser no mínimo de 5 minutos')
-    .max(60, 'O intervalo precisa ser no máximo de 60 minutos'),
+    .min(5, 'O ciclo precisa ser de no mínimo 5 minutos')
+    .max(60, 'O ciclo precisa ser de no máximo 5 minutos'),
 })
 
-type TNewCycleFormData = zod.infer<typeof newCycleFormValidationSchema>
+type NewCycleFormData = zod.infer<typeof newCycleFormValidationSchema>
 
 export function Home() {
-  const { register, handleSubmit, watch, reset } = useForm<TNewCycleFormData>({
+  const { register, handleSubmit, watch, reset } = useForm<NewCycleFormData>({
     resolver: zodResolver(newCycleFormValidationSchema),
     defaultValues: {
       task: '',
@@ -32,7 +32,7 @@ export function Home() {
     },
   })
 
-  function handleCreateNewCycle(data: TNewCycleFormData) {
+  function handleCreateNewCycle(data: NewCycleFormData) {
     console.log(data)
     reset()
   }
@@ -44,7 +44,7 @@ export function Home() {
     <HomeContainer>
       <form onSubmit={handleSubmit(handleCreateNewCycle)} action="">
         <FormContainer>
-          <label htmlFor="task">Vou trabalhar em</label>
+          <label htmlFor="task">Vou trabalhar em:</label>
           <TaskInput
             type="text"
             id="task"
@@ -65,7 +65,7 @@ export function Home() {
             step={5}
             min={5}
             max={60}
-            {...register('minutesAmount')}
+            {...register('minutesAmount', { valueAsNumber: true })}
           />
 
           <span>minutos.</span>
