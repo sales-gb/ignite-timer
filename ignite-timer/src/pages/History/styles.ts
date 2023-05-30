@@ -7,6 +7,22 @@ export const HistoryContainer = styled.main`
   display: flex;
   flex-direction: column;
 
+  max-height: 105%;
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    background-color: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: ${(props) => props.theme['gray-300']};
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: ${(props) => props.theme['gray-500']};
+  }
+
   h1 {
     font-size: 1.5rem;
     color: ${(props) => props.theme['gray-100']};

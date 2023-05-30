@@ -11,7 +11,7 @@ import {
 } from './styles'
 import { Countdown } from './components/Countdown'
 import { NewCycleForm } from './components/NewCycleForm'
-import { CyclesContext } from '../../contexts/cyclesContext'
+import { CyclesContext } from '../../contexts/CyclesContext'
 
 const newCycleFormValidationSchema = zod.object({
   task: zod.string().min(1, 'Informe a tarefa'),
